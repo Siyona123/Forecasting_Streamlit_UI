@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Ajax</title>
+    </head>
+    <body>
+        <h1 id="mainText">Change This Text</h1>
+        <br>
+        <button onclick="changeText()">Change</button>
+        <script>
+            
+        </script>
+        function changeText(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadstatechange = function(){
+                if(xhttp.readyState == 4 && xhttp.status == 200){
+                    document.getElementById('mainText').
+                    innerHTML = xhttp.responseText;
+
+                }
+
+            }
+            xhttp.open('GET','file.txt.txt',true);
+            xhttp.send();
+        }
+    
+    </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Jquery & Forms</title>
+    
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>">
+    </head>
+    <body>
+        <form id="myForm">
+            <div>
+                <label>Name: </label><br>
+                <input type="text">
+            </div>
+            <div>
+                <label>Email: </label><br>
+                <input type="text">
+            </div>
+            <div>
+                <label>Location: </label><br>
+                <input type="text" value="New York">
+            </div>
+            <div>
+                <label>Category: </label><br>
+                <select>
+                    <option value="1">Category 1</option>
+                    <option value="2">Category 2</option>
+                    <option value="3">Category 3</option>
+
+
+                </select>
+            </div>
+            <input type="submit" name="Submit">
+        </form>
+        <br><br>
+        <div id="output"></div>
+
+        <script>
+            $(document).ready(function(){
+                $('#myForm input').focus(function(){
+                    $(this).css('background','pink');
+                    $(this).blur(function(){
+                        $(this).css('background','none');
+                    });
+
+
+                });
+                //Change Event
+                $('#myForm select').change(function(){
+                    var cat ="";
+                    $('select option:selected').each(function(){
+                        cat += $(this).text() + " ";
+
+                    });
+                    $('#output').text(cat);
+
+                       
+                });
+                // Select Event
+                $(':input').select(function(){
+                    $('#output').text('Something was selected').
+                    show().fadeOut(1000);
+
+                });
+                // Submit Event
+                $('#myForm').submit(function(){
+                    $('#output').text('Form Submitted');
+                });
+
+                // Keyup and Keydown Events
+                $('myForm input').keydown(function(){
+                    $('#output').text('You are typing...');
+                    $(this).keyup(function(){
+                        $('#output').text('');
+                    });
+                });
+
+
+            });
+            
+        </script>
+    
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>DOM Manipulation</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>">
+        <style>
+            .red{
+                color: red;
+            }
+            .green{
+                color: green;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div id="d1"></div>
+        <div id="d2" class="green"></div>
+        <input id="i1" type="text">
+        <br><br>
+        <ul id="list1">
+            <li>List Item</li>
+            <li>List Item</li>
+            <li>List Item</li>
+            <li>List Item</li>
+        </ul>
+        <br><br>
+        <button id="myBtn">Click</button>
+        <script>
+            $(document).ready(function(){
+                $('#d1').text('Hello World');
+                $('#d2').html('<h1>Hello World</h1>');
+                $('#i1').val('Hello World');
+                //alert($('#d1').text());
+                $('#d1').attr('class','something');
+                $('#d1').removeAttr('class');
+                $('#list1').append('<li>Last Item</li>');
+                $('#list1').prepend('<li>First Item</li>');
+                $('#list1').before('<p>Before List</p>');
+                $('#list1').after('<p>After List</p>');
+                //$('#list1').remove();
+                //$('#list1').empty();
+
+                $('#d1').addClass('red');
+                $('#d2').removeClass('green');
+
+                $('#myBtn').click(function(){
+                    $('#d2').toggleClass('green');
+                });
+                $('#d1').css('background','pink');
+                $('#d1').width('150');
+                $('#d1').height('50');
+                $('#d2').replaceWith('<h2>Replaced</h2>');
+                $('li').unwrap();
+                $('#d2').wrap('<div></div');
+
+
+
+
+
+
+
+
+            });
+        </script>
+    
+    </body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Effects $ Animation</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>">
+        
+    </head>
+    <body>
+        <button id="btnHide">Hide</button>
+        <button id="btnShow">Show</button>
+        <button id="btnTog">Toggle</button>
+        <button id="btnFadeOut">Fade Out</button>
+        <button id="btnFadeIn">Fade In</button>
+        <button id="btnfadeTog">Fade Toggle</button>
+        <button id="btnSlideUp">Slide Up</button>
+        <button id="btnSlideDown">Slide Down</button>
+        <button id="btnSlideTog">Slide Toggle</button>
+
+        <p class="p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet ipsum eu dui vestibulum, sit amet faucibus lorem congue. Proin et nisl ultricies, commodo sem eu, blandit velit. Etiam aliquet, lorem at sollicitudin malesuada, augue massa laoreet velit, placerat efficitur tortor mi sed ex. Nunc at velit sit amet nisi malesuada blandit eu ut erat. Praesent vel nisl ut urna sollicitudin convallis. Curabitur ullamcorper fringilla arcu sed pellentesque. Nam iaculis sit amet leo ac convallis. Vivamus eu nunc ultrices, malesuada urna id, mollis velit. Integer pulvinar ligula vitae tristique consectetur. Pellentesque dapibus, est vitae ultricies fermentum, odio nisl elementum dui, ut auctor nisi ipsum vel leo.</p>
+        <script>
+            $(document).ready(function(){
+                $('#btnHide').click (function(){
+                    $('.p1').hide();
+                    
+                });
+                $('#btnShow').click (function(){
+                    $('.p1').show();
+                    
+                });
+                $('#btnTog').click (function(){
+                    $('.p1').toggle();
+                    
+                });
+                $('#btnFadeOut').click (function(){
+                    $('.p1').fadeOut(2000);
+                    
+                });
+                $('#btnFadeIn').click (function(){
+                    $('.p1').fadeIn(2000);
+                    
+                });
+                $('#btnFadeTog').click (function(){
+                    $('.p1').fadeToggle(2000);
+                    
+                });
+                $('#btnSlideUp').click (function(){
+                    $('.p1').slideUp(2000);
+                    
+                });
+                $('#btnSlideDown').click (function(){
+                    $('.p1').slideDown(2000);
+                    
+                });
+                $('#btnSlideTog').click (function(){
+                    $('.p1').slideToggle(2000);
+                    
+                });
+                
+
+
+            });
+        
+        </script>
+    
+    </body>
+</html>
